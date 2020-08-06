@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42DD391124DAC86F00DDCA36 /* TagsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391024DAC86F00DDCA36 /* TagsDemoApp.swift */; };
+		424E48E324DCB90D00DFE083 /* IdentifiableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */; };
+		424E48FE24DD057F00DFE083 /* TagsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391024DAC86F00DDCA36 /* TagsDemoApp.swift */; };
 		42DD391324DAC86F00DDCA36 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391224DAC86F00DDCA36 /* HomeView.swift */; };
 		42DD391524DAC87000DDCA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42DD391424DAC87000DDCA36 /* Assets.xcassets */; };
 		42DD391824DAC87000DDCA36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42DD391724DAC87000DDCA36 /* Preview Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableAlert.swift; sourceTree = "<group>"; };
 		42DD390D24DAC86F00DDCA36 /* TagsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42DD391024DAC86F00DDCA36 /* TagsDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsDemoApp.swift; sourceTree = "<group>"; };
 		42DD391224DAC86F00DDCA36 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -57,11 +59,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42B4D2F924DE92B800B1479D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		42DD390424DAC86F00DDCA36 = {
 			isa = PBXGroup;
 			children = (
 				42DD390F24DAC86F00DDCA36 /* TagsDemo */,
 				42DD390E24DAC86F00DDCA36 /* Products */,
+				42B4D2F924DE92B800B1479D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				42DD394A24DB780500DDCA36 /* ActivityBlurViewModifier.swift */,
+				424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -201,6 +212,8 @@
 			dependencies = (
 			);
 			name = TagsDemo;
+			packageProductDependencies = (
+			);
 			productName = TagsDemo;
 			productReference = 42DD390D24DAC86F00DDCA36 /* TagsDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -228,6 +241,8 @@
 				Base,
 			);
 			mainGroup = 42DD390424DAC86F00DDCA36;
+			packageReferences = (
+			);
 			productRefGroup = 42DD390E24DAC86F00DDCA36 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -255,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42DD394224DB627700DDCA36 /* PostViewModel.swift in Sources */,
+				424E48FE24DD057F00DFE083 /* TagsDemoApp.swift in Sources */,
+				424E48E324DCB90D00DFE083 /* IdentifiableAlert.swift in Sources */,
 				42DD393E24DB5D1500DDCA36 /* FeedView.swift in Sources */,
 				42DD392E24DACBC200DDCA36 /* Color+Random.swift in Sources */,
 				42DD393924DAD8A900DDCA36 /* PostsManager.swift in Sources */,
@@ -263,7 +280,6 @@
 				42DD393424DAD01500DDCA36 /* UIColor+.swift in Sources */,
 				42DD393C24DAD9BC00DDCA36 /* NewPostViewModel.swift in Sources */,
 				42DD392724DAC9B000DDCA36 /* Tag.swift in Sources */,
-				42DD391124DAC86F00DDCA36 /* TagsDemoApp.swift in Sources */,
 				42DD392524DAC8C500DDCA36 /* Post.swift in Sources */,
 				42DD394B24DB785F00DDCA36 /* ActivityBlurViewModifier.swift in Sources */,
 				42DD394024DB623400DDCA36 /* PostView.swift in Sources */,

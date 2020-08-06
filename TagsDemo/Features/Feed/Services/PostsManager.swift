@@ -10,11 +10,28 @@ import SwiftUI
 
 enum PostManagerError: Error, LocalizedError {
 	case createPostError, fetchPostsError, decodingError, encodingError, networkError, unknown(reason: String?)
+	
+	var errorDescription: String? {
+		switch self {
+		case .createPostError:
+			return "Error creating new post."
+		case .fetchPostsError:
+			return "Error fetching posts."
+		case .decodingError:
+			return "Error decoding post."
+		case .encodingError:
+			return "Error encoding post."
+		case .networkError:
+			return "Network error."
+		case .unknown(reason: let reason):
+			return "An unknown error occured: \(reason ?? "N/A")"
+		}
+	}
 }
 
 let PostImagesCache = NSCache<NSString, UIImage>()
 
-//Quickly mocking database using .plist file. Not thread safe.
+//Quickly mocking database using .plist. Not thread-safe.
 extension UserDefaults {
 	fileprivate static let storedPostsKey = "storedPosts"
 	var storedPosts: [Post] {
@@ -48,20 +65,22 @@ class PostsManager: ObservableObject {
 		__postsManager
 	}
 	private init() {
+		//uncomment to clear all posts...or just delete them.
 //		UserDefaults.standard.storedPosts = []
 	}
 	
 	static let placeholderURLString = "https://via.placeholder.com/400x200"
-	static let placeholderURL: URL = URL(string: "https://via.placeholder.com/400x200")!
-	static let randomImageBaseURLIncomingHostname: String = "i.picsum.photos"
-	static let randomImageBaseURLForFetchHostname: String = "picsum.photos"
+	static let placeholderURL: URL = URL(string: placeholderURLString)!
+	
 	static let randomImageURLString = "https://picsum.photos/640/360"
-	static let randomImageURL: URL? = URL(string: "https://picsum.photos/640/360")
+	static let randomImageURL: URL? = URL(string: randomImageURLString)
+	static let randomImageBaseURLIncomingHostname: String = "i.picsum.photos"
+	static let randomImageBaseURLRequestHostname: String = "picsum.photos"
 
-	private static let queue: DispatchQueue = DispatchQueue(label: "posts-manager-background-queue", qos: .background)
+	private static let queue: DispatchQueue = DispatchQueue(label: "posts-manager.background-queue", qos: .background)
 	private var cancelBucket = Set<AnyCancellable>()
 	
-	func createPost(_ newPostInput: Post.NewPostInput, resultHandler: @escaping (Result<[Post], PostManagerError>) -> Void) {
+	func createPost(_ newPostInput: Post.NewPostInput, completion: @escaping (Result<[Post], PostManagerError>) -> Void) {
 		//mock network call
 		if let img = newPostInput.image {
 			let substr = newPostInput.imageURL?.absoluteString.split(separator: "?").first
@@ -78,9 +97,9 @@ class PostsManager: ObservableObject {
 				let posts = UserDefaults.standard.storedPosts
 				DispatchQueue.main.async {
 					if !(posts.isEmpty), posts.map({$0.title}).contains(post.title) {
-						resultHandler(.success(posts))
+						completion(.success(posts))
 					}else {
-						resultHandler(.failure(.encodingError))
+						completion(.failure(.encodingError))
 					}
 				}
 			}
@@ -117,7 +136,6 @@ class PostsManager: ObservableObject {
 	}
 	func randomImage() -> AnyPublisher<PostManagerFetchResponse, PostManagerError>? {
 		guard let url = Self.randomImageURL else {
-			
 			return Future { (promise) in
 				if let data = try? Data(contentsOf: PostsManager.placeholderURL) {
 					if let image = UIImage(data: data) {
@@ -125,17 +143,15 @@ class PostsManager: ObservableObject {
 							promise(.success(PostManagerFetchResponse(image, nil)))
 						}
 					}else {
-						promise(.failure(.networkError))
-						
+						promise(.failure(.decodingError))
 					}
 				}else {
 					DispatchQueue.main.async {
 						promise(.failure(.networkError))
 					}
 				}
-				
-			}.eraseToAnyPublisher()
-				
+			}
+			.eraseToAnyPublisher()
 		}
 		return URLSession.shared.dataTaskPublisher(for: url)
 			.subscribe(on: DispatchQueue.global(qos: .background))
@@ -145,7 +161,7 @@ class PostsManager: ObservableObject {
 					  200..<300 ~= httpResponse.statusCode else {
 					throw PostManagerError.networkError
 				}
-				let url = Self.shared.urlFromReturnedImageAbsoluteString(httpResponse.url?.absoluteString)
+				let url = self.urlFromReturnedImageAbsoluteString(httpResponse.url?.absoluteString)
 				return (data, url)
 			}
 			.retry(3)
@@ -168,7 +184,7 @@ class PostsManager: ObservableObject {
 	}
 	
 	func fetchPosts(completion: @escaping ([Post]) -> Void) {
-		fetchPostsFromNetwork()
+		fetchPostsFromUserDefaults()
 			.receive(on: DispatchQueue.main)
 			.sink(receiveValue: { (posts) in
 				DispatchQueue.main.async {
@@ -179,7 +195,7 @@ class PostsManager: ObservableObject {
 
 	}
 	
-	private func fetchPostsFromNetwork() -> AnyPublisher<[Post], Never> {
+	private func fetchPostsFromUserDefaults() -> AnyPublisher<[Post], Never> {
 		Future<[Post], Never>({ (promise) in
 			Self.queue.asyncAfter(deadline: .now() + Double.random(in: 0..<2)) {
 				let posts = UserDefaults.standard.storedPosts
@@ -191,7 +207,7 @@ class PostsManager: ObservableObject {
 	func urlFromReturnedImageAbsoluteString(_ urlString: String?) -> URL? {
 		guard let urlString = urlString, var components = URLComponents(string: urlString) else { return nil }
 		if components.host == Self.randomImageBaseURLIncomingHostname {
-			components.host = Self.randomImageBaseURLForFetchHostname
+			components.host = Self.randomImageBaseURLRequestHostname
 		}
 		components.queryItems?.removeAll()
 		components.path = (components.path as NSString).deletingPathExtension

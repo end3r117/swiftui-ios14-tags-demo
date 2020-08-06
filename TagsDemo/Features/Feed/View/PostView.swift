@@ -52,7 +52,7 @@ struct PostView: Identifiable, View {
 			ScrollView(.horizontal, showsIndicators: false) {
 				HStack {
 					ForEach(model.tags, id: \.id) { tag in
-						Text("#\(tag.id)")
+						Text("#\(tag.tagName)")
 							.italic()
 							.foregroundColor(tag.color)
 							.fontWeight(.medium)
@@ -67,7 +67,7 @@ struct PostView: Identifiable, View {
 			RoundedRectangle(cornerRadius: 8)
 				.fill(Color(colorScheme == .dark ? .secondarySystemFill : .systemFill))
 		)
-    }
+	}
 }
 
 struct PostView_Previews: PreviewProvider {

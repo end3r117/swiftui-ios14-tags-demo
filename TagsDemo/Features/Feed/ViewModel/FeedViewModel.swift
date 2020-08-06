@@ -28,7 +28,8 @@ class FeedViewModel: ObservableObject {
 						post.updatePost(image: img, imageURL: nil)
 					}
 				}
-				self?.postViews = posts.sorted(by: { $0.date > $1.date }).map({PostView(model: PostViewModel(post: $0))})
+				self?.postViews = posts.sorted(by: { $0.date > $1.date })
+					.map({PostView(model: PostViewModel(post: $0))})
 				self?.refreshing = false
 			}
 		}
@@ -39,40 +40,27 @@ class FeedViewModel: ObservableObject {
 	}
 	
 	func removePosts(at indexSet: IndexSet) {
-		DispatchQueue.global(qos: .background).async {
-			indexSet.forEach { idx in
-				PostImagesCache.removeObject(forKey: self.postViews[idx].id as NSString)
-				var posts = UserDefaults.standard.storedPosts
-				posts.removeAll(where: {$0.id == self.postViews[idx].id })
-				UserDefaults.standard.storedPosts = posts
-				DispatchQueue.main.async {
-					withAnimation {
-						self.postViews.remove(atOffsets: indexSet)
-					}
-				}
+		var posts = UserDefaults.standard.storedPosts.sorted(by: { $0.date > $1.date })
+		let currentIds = postViews.map({ $0.id as NSString })
+		DispatchQueue.main.async {
+			withAnimation {
+				self.postViews.remove(atOffsets: indexSet)
 			}
 		}
-	}
-	
-	func getNewPostsModel() -> NewPostViewModel {
-//		if newPostViewModel == nil {
-			newPostViewModel = NewPostViewModel(onSuccess: newPostSuccessClosure)
-//		}
-		return newPostViewModel!
+		DispatchQueue.global(qos: .background).async {
+			posts.remove(atOffsets: indexSet)
+			indexSet.forEach({idx in
+				//posts.removeAll(where: { $0.id == self.postViews[idx].id })
+				PostImagesCache.removeObject(forKey: currentIds[idx])
+			})
+			UserDefaults.standard.storedPosts = posts
+		}
+		
 	}
 	
 	func refreshPosts() {
 		guard !refreshing else { return }
 		refreshing = true
 		PostsManager.shared.fetchPosts(completion: newPostSuccessClosure)
-//		{ (posts) in
-//			var postViews = posts.map({PostView(model: PostViewModel(post: $0))})
-//			if postViews.isEmpty {
-//				postViews.append(PostView(model: PostViewModel()))
-//			}
-//			DispatchQueue.main.async {
-//				self.postViews = postViews
-//				self.refreshing = false
-//			}
 	}
 }

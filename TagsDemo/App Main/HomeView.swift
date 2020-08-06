@@ -11,15 +11,13 @@ struct HomeView: View {
 	let user = User(username: "end3r117", firstName: "Anthony")
 	@State private var scheme: ColorScheme = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? .dark : .light
 	@State private var menuOpen: Bool = false
-	@Namespace var menu
+	@State private var listStyleChoice: ListStyleChoice = .plain
 	
 	var body: some View {
 		NavigationView {
-			VStack {
-				FeedView(colorScheme: $scheme)
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
-			}
-			.padding(.horizontal)
+			FeedView(colorScheme: $scheme, listStyleChoice: $listStyleChoice)
+				.equatable()
+			
 			.navigationBarTitle(Text("Timeline"), displayMode: .large)
 			.navigationBarItems(
 				trailing:
@@ -29,11 +27,13 @@ struct HomeView: View {
 						}
 					}, label: {
 						Image(systemName: scheme == .dark ? "lightbulb.fill" : "lightbulb")
-							.foregroundColor(scheme == .dark ? .accentColor : .primary).transition(.move(edge: .trailing))
+							.foregroundColor(scheme == .dark ? .accentColor : .primary)
+							.transition(.move(edge: .trailing))
 							.animation(.easeInOut)
 					})
 			)
 		}
+		.id(listStyleChoice)
 		.preferredColorScheme(scheme)
 		.transition(.identity)
 		.animation(nil)

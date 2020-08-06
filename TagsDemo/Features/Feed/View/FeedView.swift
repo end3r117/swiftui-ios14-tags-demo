@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct FeedView: View {
+struct FeedView: View, Equatable {
+	static func == (lhs: FeedView, rhs: FeedView) -> Bool {
+		lhs.listStyleChoice == rhs.listStyleChoice
+	}
+	
 	@StateObject var viewModel = FeedViewModel()
 	@Binding var colorScheme: ColorScheme
+	@Binding var listStyleChoice: ListStyleChoice
 	@State private var first: Bool = true
     
 	var body: some View {
+		GeometryReader { geo in
 		List {
 			ForEach(viewModel.postViews.indices, id: \.self) { idx in
 				viewModel.postViews[idx]
@@ -20,18 +26,22 @@ struct FeedView: View {
 					.padding(.vertical)
 			}
 			.onDelete(perform: { indexSet in
-				viewModel.removePosts(at: indexSet)
+				withAnimation {
+					viewModel.removePosts(at: indexSet)
+				}
 			})
+			
 		}
-		.listStyle(PlainListStyle())
+		.listStyleChoice(listStyleChoice)
 		.buttonStyle(PlainButtonStyle())
+		.transition(first ? .identity : .scale)
+		.animation(first ? nil : .easeInOut)
 		.onAppear { viewModel.refreshPosts() }
 		.onChange(of: viewModel.refreshing, perform: { value in
-			if value == false {
+			if value == false, first {
 				first = false
 			}
 		})
-		.padding(.top)
 		.overlay(
 			VStack {
 				if first || viewModel.refreshing {
@@ -43,13 +53,31 @@ struct FeedView: View {
 				}
 			}
 			, alignment:first || viewModel.refreshing  ? .center : .top)
+		}
 		.sheet(isPresented: $viewModel.showingNewPostView, content: {
-			NewPostView(viewModel: viewModel.getNewPostsModel())
-				.environment(\.colorScheme, colorScheme)
-				.colorScheme(colorScheme)
+			NewPostView(onSuccess: {
+				viewModel.showingNewPostView = false
+				viewModel.refreshPosts()
+			})
+			.environment(\.colorScheme, colorScheme)
+			.colorScheme(colorScheme)
 		})
 		.toolbar {
-			ToolbarItem(placement: .bottomBar, content:{
+			ToolbarItem(placement: .bottomBar){
+				Button(action: {
+					withAnimation(.easeIn(duration: 2)) {
+						listStyleChoice.toggle()
+					}
+				}, label: {
+					Text(listStyleChoice.rawValue)
+						.animation(.easeInOut)
+						.padding(.leading)
+				})
+			}
+			ToolbarItem(placement: .bottomBar){
+				Spacer()
+			}
+			ToolbarItem(placement: .bottomBar){
 				Button(action: {
 					viewModel.showingNewPostView.toggle()
 				}, label: {
@@ -60,7 +88,10 @@ struct FeedView: View {
 						.overlay(Circle().fill(Color.accentColor.opacity(0.3)))
 						.overlay(Image(systemName: "camera").font(.headline).foregroundColor(.white))
 				})
-			})
+			}
+			ToolbarItem(placement: .bottomBar){
+				Spacer()
+			}
 		}
 		.preferredColorScheme(colorScheme)
 	}
@@ -79,7 +110,6 @@ struct FeedView: View {
 				viewModel.refreshPosts()
 			}
 		}
-		
 	}
 }
 
@@ -89,6 +119,48 @@ struct FeedView_Previews: PreviewProvider {
 			Color(.systemBackground)
 			HomeView()
 		}
-		
     }
+}
+
+enum ListStyleChoice: String, CaseIterable {
+	case defaultStyle = "Default", grouped = "Grouped", inset = "Inset", insetGrouped = "InsetGroup", plain = "Plain"
+	
+	mutating func toggle() {
+		if let idx = Self.allCases.firstIndex(of: self) {
+			if Self.allCases.indices.contains(idx + 1) {
+				self = Self.allCases[idx + 1]
+			}else {
+				self = Self.allCases.first!
+			}
+		}
+	}
+	
+	func image(forColorScheme cs: ColorScheme) -> Image? {
+		if self == .plain {
+			return Image(systemName: cs == .dark ? "rectangle.grid.1x2.fill" : "rectangle.grid.1x2")
+		}else if self == .inset {
+			return Image(systemName: cs == .dark ? "rectangle.grid.2x2.fill" : "rectangle.grid.2x2")
+		}
+		
+		return nil
+	}
+}
+
+extension View {
+	func listStyleChoice(_ style: ListStyleChoice) -> some View {
+		return	Group {
+			switch style {
+			case .defaultStyle:
+				self.listStyle(DefaultListStyle())
+			case .grouped:
+				self.listStyle(GroupedListStyle())
+			case .inset:
+				self.listStyle(InsetListStyle())
+			case .insetGrouped:
+				self.listStyle(InsetGroupedListStyle())
+			case .plain:
+				self.listStyle(PlainListStyle())
+			}
+		}
+	}
 }
