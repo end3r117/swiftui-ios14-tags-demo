@@ -32,7 +32,6 @@ class PostViewModel: ObservableObject {
 			favorited.toggle()
 			post.favorited(favorited)
 			PostsManager.shared.updatedPost(post)
-			
 		}
 	}
 	
@@ -60,7 +59,8 @@ class PostViewModel: ObservableObject {
 		
 		self.tags = post.tags
 		
-		PostsManager.shared.randomImage(completion: { res in
+		PostsManager.shared.randomImage(completion: { [weak self] res in
+			guard let self = self else { return }
 			switch res {
 			case .success(let (img, url)):
 				DispatchQueue.main.async {

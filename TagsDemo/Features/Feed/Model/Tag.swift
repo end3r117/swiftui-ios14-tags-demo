@@ -9,23 +9,31 @@ import SwiftUI
 
 struct Tag: View, Identifiable {
 	
-	var showRemove: Bool = false
-	let id: String
-	let uiColor: UIColor
+	let id = UUID()
+	let tagName: String
+	private(set) var uiColor: UIColor
+	private(set) var showRemovalSymbol: Bool = false
+	
+	init(tagName: String, color: UIColor = .random()) {
+		self.tagName = tagName
+		self.uiColor = color
+	}
 	
 	var color: Color {
 		Color(uiColor)
 	}
 	
-	init(tagName: String, color: UIColor = .random()) {
-		self.id = tagName
-		self.uiColor = color
+	mutating func select(_ shouldSelect: Bool? = nil) {
+		if shouldSelect != nil {
+			showRemovalSymbol = shouldSelect!
+		}else {
+			showRemovalSymbol.toggle()
+		}
 	}
 	
-	mutating func select() {
-		showRemove.toggle()
+	mutating func changeColor(to newColor: UIColor) {
+		self.uiColor = newColor
 	}
-	
 	
 	var body: some View {
 			tagText(Color(.systemFill))
@@ -38,14 +46,14 @@ struct Tag: View, Identifiable {
 	}
 	func tagText(_ fontColor: Color = .primary) -> some View {
 		HStack {
-		Text(id)
+		Text(tagName)
 			.font(.headline)
 			.foregroundColor(fontColor)
 			.padding(.horizontal)
 			.padding(.vertical, 10)
 			.frame(maxWidth: .infinity, minHeight: 8)
 			.fixedSize(horizontal: true, vertical: false)
-			if showRemove {
+			if showRemovalSymbol {
 				Image(systemName: "x.square.fill")
 					.offset(x: -8)
 					.foregroundColor(.white)
@@ -62,7 +70,7 @@ struct Tag: View, Identifiable {
 struct Tag_Previews: PreviewProvider {
 	
 	static var previews: some View {
-		Tag.demoTags.randomElement()
+		Tag.demoTags.randomElement()!
 	}
 }
 
@@ -71,12 +79,50 @@ extension Tag {
 	static func makeTags(for tagNames: [String]) -> [Tag] {
 		tagNames.map({Tag(tagName: $0)})
 	}
-	static var demoTags: [Tag] = Tag.makeTags(for: ["Blessed", "Summer", "Hot", "TIFU", "TIL"])
+	static var demoTags: [Tag] = Tag.makeTags(for: ["love", "blessed", "summer", "hot", "TIFU", "TIL", "photooftheday", "fashion", "beautiful", "selfie", "happy", "art", "tbt", "covid20", "like4like", "nature", "girl", "family", "travel", "fun"])
+//	static func demoTags(_ count: Int = __demoTags.count) -> [Tag] {
+//		let count = min(count, __demoTags.count)
+//		return Array(repeating: __demoTags.randomElement()!, count: count)
+//	}
 }
+/*
+//Top hashtags from Twitter
+#love
+#instagood
+#photooftheday
+#fashion
+#beautiful
+#happy
+#cute
+#tbt
+#like4like
+#followme
+#picoftheday
+#follow
+#me
+#selfie
+#summer
+#art
+#instadaily
+#friends
+#repost
+#blessed
+#nature
+#girl
+#fun
+#style
+#smile
+#food
+#instalike
+#likeforlike
+#family
+#travel
+#fitness
+*/
 
 extension Tag: Equatable, Hashable {
 	static func == (lhs: Tag, rhs: Tag) -> Bool {
-		lhs.id == rhs.id && lhs.showRemove == rhs.showRemove
+		lhs.id == rhs.id && lhs.showRemovalSymbol == rhs.showRemovalSymbol && lhs.color == rhs.color
 	}
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(id)
@@ -104,13 +150,23 @@ extension Tag: Codable {
 			let id = try container.decode(String.self, forKey: .id)
 			
 			let componentsArray = try container.decode(String.self, forKey: .color).split(separator: ",").map({String($0)})
+			
 			let formatter = NumberFormatter()
-			guard componentsArray.indices.count == 4, let red = formatter.number(from: componentsArray[0]), let green = formatter.number(from: componentsArray[1]), let blue = formatter.number(from: componentsArray[2]), let alpha = formatter.number(from: componentsArray[3]) else {
+			guard
+				componentsArray.indices.count == 4,
+				let red 	= 	formatter.number(from: componentsArray[0]),
+				let green 	= 	formatter.number(from: componentsArray[1]),
+				let blue	= 	formatter.number(from: componentsArray[2]),
+				let alpha 	= 	formatter.number(from: componentsArray[3])
+			else {
 				self.init(tagName: id)
 				return
 			}
 			
-			let color = UIColor(red: CGFloat(red.floatValue), green: CGFloat(green.floatValue), blue: CGFloat(blue.floatValue), alpha: CGFloat(alpha.floatValue))
+			let color = UIColor(red: CGFloat(red.floatValue),
+								green: CGFloat(green.floatValue),
+								blue: CGFloat(blue.floatValue),
+								alpha: CGFloat(alpha.floatValue))
 			
 			self.init(tagName: id, color: color)
 			

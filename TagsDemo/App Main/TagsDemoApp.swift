@@ -11,12 +11,11 @@ typealias User = (username: String, firstName: String)
 
 @main
 struct TagsDemoApp: App {
-	let postsManager = PostsManager.shared
 	
 	var body: some Scene {
         WindowGroup {
             HomeView()
-				.environmentObject(postsManager)
+				.environmentObject(PostsManager.shared)
         }
     }
 }
