@@ -41,7 +41,6 @@ extension UIColor {
 		
 		return (red, green, blue, alpha)
 	}
-	
 }
 
 struct Prev: View {

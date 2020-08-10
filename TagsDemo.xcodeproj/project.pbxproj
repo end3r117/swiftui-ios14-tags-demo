@@ -7,12 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421EF6D524E11CBE0088C2AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6D424E11CBE0088C2AF /* AppDelegate.swift */; };
+		421EF6D724E11CBE0088C2AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6D624E11CBE0088C2AF /* SceneDelegate.swift */; };
+		421EF6DB24E11CC00088C2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421EF6DA24E11CC00088C2AF /* Assets.xcassets */; };
+		421EF6DE24E11CC00088C2AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421EF6DD24E11CC00088C2AF /* Preview Assets.xcassets */; };
+		421EF6E124E11CC00088C2AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 421EF6DF24E11CC00088C2AF /* LaunchScreen.storyboard */; };
+		421EF6E724E11CDC0088C2AF /* Color+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD392D24DACBC200DDCA36 /* Color+Random.swift */; };
+		421EF6E824E11CDE0088C2AF /* IdentifiableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */; };
+		421EF6E924E11CE10088C2AF /* ActivityBlurViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD394A24DB780500DDCA36 /* ActivityBlurViewModifier.swift */; };
+		421EF6F024E11D240088C2AF /* NewPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD393B24DAD9BC00DDCA36 /* NewPostViewModel.swift */; };
+		421EF6F124E11D2B0088C2AF /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD392624DAC9B000DDCA36 /* Tag.swift */; };
+		421EF6F524E11D710088C2AF /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6F424E11D710088C2AF /* PostsView.swift */; };
+		421EF6F724E11D9B0088C2AF /* NewPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6F624E11D9B0088C2AF /* NewPostsView.swift */; };
+		421EF6F824E11DA90088C2AF /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391F24DAC88D00DDCA36 /* NewPostView.swift */; };
+		421EF6FA24E11DBE0088C2AF /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6F924E11DBE0088C2AF /* FeedView.swift */; };
+		421EF6FC24E11E160088C2AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6FB24E11E160088C2AF /* HomeView.swift */; };
+		421EF6FD24E11E390088C2AF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391224DAC86F00DDCA36 /* HomeView.swift */; };
+		421EF6FF24E11E770088C2AF /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF6FE24E11E770088C2AF /* UIColor+.swift */; };
+		421EF70324E1257D0088C2AF /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF70224E1257D0088C2AF /* PostsManager.swift */; };
+		421EF70524E128710088C2AF /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF70424E128710088C2AF /* FeedViewModel.swift */; };
+		421EF70724E128B10088C2AF /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF70624E128B10088C2AF /* PostViewModel.swift */; };
+		421EF70924E128DA0088C2AF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421EF70824E128DA0088C2AF /* Post.swift */; };
 		424E48E324DCB90D00DFE083 /* IdentifiableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */; };
 		424E48FE24DD057F00DFE083 /* TagsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391024DAC86F00DDCA36 /* TagsDemoApp.swift */; };
-		42DD391324DAC86F00DDCA36 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391224DAC86F00DDCA36 /* HomeView.swift */; };
 		42DD391524DAC87000DDCA36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42DD391424DAC87000DDCA36 /* Assets.xcassets */; };
 		42DD391824DAC87000DDCA36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42DD391724DAC87000DDCA36 /* Preview Assets.xcassets */; };
-		42DD392024DAC88D00DDCA36 /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD391F24DAC88D00DDCA36 /* NewPostView.swift */; };
 		42DD392524DAC8C500DDCA36 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD392424DAC8C500DDCA36 /* Post.swift */; };
 		42DD392724DAC9B000DDCA36 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD392624DAC9B000DDCA36 /* Tag.swift */; };
 		42DD392E24DACBC200DDCA36 /* Color+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD392D24DACBC200DDCA36 /* Color+Random.swift */; };
@@ -27,6 +46,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		421EF6D224E11CBE0088C2AF /* TagsDemo-iOS13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TagsDemo-iOS13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		421EF6D424E11CBE0088C2AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		421EF6D624E11CBE0088C2AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		421EF6DA24E11CC00088C2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		421EF6DD24E11CC00088C2AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		421EF6E024E11CC00088C2AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		421EF6E224E11CC00088C2AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		421EF6F424E11D710088C2AF /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
+		421EF6F624E11D9B0088C2AF /* NewPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostsView.swift; sourceTree = "<group>"; };
+		421EF6F924E11DBE0088C2AF /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		421EF6FB24E11E160088C2AF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		421EF6FE24E11E770088C2AF /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		421EF70224E1257D0088C2AF /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
+		421EF70424E128710088C2AF /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		421EF70624E128B10088C2AF /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		421EF70824E128DA0088C2AF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		424E48E224DCB90D00DFE083 /* IdentifiableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableAlert.swift; sourceTree = "<group>"; };
 		42DD390D24DAC86F00DDCA36 /* TagsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42DD391024DAC86F00DDCA36 /* TagsDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsDemoApp.swift; sourceTree = "<group>"; };
@@ -49,6 +84,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		421EF6CF24E11CBE0088C2AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42DD390A24DAC86F00DDCA36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,6 +101,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		421EF6D324E11CBE0088C2AF /* TagsDemo-iOS13 */ = {
+			isa = PBXGroup;
+			children = (
+				421EF6E224E11CC00088C2AF /* Info.plist */,
+				421EF6D424E11CBE0088C2AF /* AppDelegate.swift */,
+				421EF6F924E11DBE0088C2AF /* FeedView.swift */,
+				421EF70424E128710088C2AF /* FeedViewModel.swift */,
+				421EF6FB24E11E160088C2AF /* HomeView.swift */,
+				421EF6F624E11D9B0088C2AF /* NewPostsView.swift */,
+				421EF70824E128DA0088C2AF /* Post.swift */,
+				421EF70224E1257D0088C2AF /* PostsManager.swift */,
+				421EF6F424E11D710088C2AF /* PostsView.swift */,
+				421EF70624E128B10088C2AF /* PostViewModel.swift */,
+				421EF6D624E11CBE0088C2AF /* SceneDelegate.swift */,
+				421EF6FE24E11E770088C2AF /* UIColor+.swift */,
+				421EF6DA24E11CC00088C2AF /* Assets.xcassets */,
+				421EF6DF24E11CC00088C2AF /* LaunchScreen.storyboard */,
+				421EF6DC24E11CC00088C2AF /* Preview Content */,
+			);
+			path = "TagsDemo-iOS13";
+			sourceTree = "<group>";
+		};
+		421EF6DC24E11CC00088C2AF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				421EF6DD24E11CC00088C2AF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		42B4D2F924DE92B800B1479D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				42DD390F24DAC86F00DDCA36 /* TagsDemo */,
+				421EF6D324E11CBE0088C2AF /* TagsDemo-iOS13 */,
 				42DD390E24DAC86F00DDCA36 /* Products */,
 				42B4D2F924DE92B800B1479D /* Frameworks */,
 			);
@@ -79,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				42DD390D24DAC86F00DDCA36 /* TagsDemo.app */,
+				421EF6D224E11CBE0088C2AF /* TagsDemo-iOS13.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +273,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		421EF6D124E11CBE0088C2AF /* TagsDemo-iOS13 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 421EF6E524E11CC00088C2AF /* Build configuration list for PBXNativeTarget "TagsDemo-iOS13" */;
+			buildPhases = (
+				421EF6CE24E11CBE0088C2AF /* Sources */,
+				421EF6CF24E11CBE0088C2AF /* Frameworks */,
+				421EF6D024E11CBE0088C2AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TagsDemo-iOS13";
+			productName = "TagsDemo-iOS13";
+			productReference = 421EF6D224E11CBE0088C2AF /* TagsDemo-iOS13.app */;
+			productType = "com.apple.product-type.application";
+		};
 		42DD390C24DAC86F00DDCA36 /* TagsDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42DD391C24DAC87000DDCA36 /* Build configuration list for PBXNativeTarget "TagsDemo" */;
@@ -227,6 +318,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					421EF6D124E11CBE0088C2AF = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					42DD390C24DAC86F00DDCA36 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -248,11 +342,22 @@
 			projectRoot = "";
 			targets = (
 				42DD390C24DAC86F00DDCA36 /* TagsDemo */,
+				421EF6D124E11CBE0088C2AF /* TagsDemo-iOS13 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		421EF6D024E11CBE0088C2AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				421EF6E124E11CC00088C2AF /* LaunchScreen.storyboard in Resources */,
+				421EF6DE24E11CC00088C2AF /* Preview Assets.xcassets in Resources */,
+				421EF6DB24E11CC00088C2AF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42DD390B24DAC86F00DDCA36 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +370,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		421EF6CE24E11CBE0088C2AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				421EF70524E128710088C2AF /* FeedViewModel.swift in Sources */,
+				421EF70324E1257D0088C2AF /* PostsManager.swift in Sources */,
+				421EF6D524E11CBE0088C2AF /* AppDelegate.swift in Sources */,
+				421EF70924E128DA0088C2AF /* Post.swift in Sources */,
+				421EF6F024E11D240088C2AF /* NewPostViewModel.swift in Sources */,
+				421EF70724E128B10088C2AF /* PostViewModel.swift in Sources */,
+				421EF6F524E11D710088C2AF /* PostsView.swift in Sources */,
+				421EF6F724E11D9B0088C2AF /* NewPostsView.swift in Sources */,
+				421EF6FF24E11E770088C2AF /* UIColor+.swift in Sources */,
+				421EF6FC24E11E160088C2AF /* HomeView.swift in Sources */,
+				421EF6D724E11CBE0088C2AF /* SceneDelegate.swift in Sources */,
+				421EF6E724E11CDC0088C2AF /* Color+Random.swift in Sources */,
+				421EF6FA24E11DBE0088C2AF /* FeedView.swift in Sources */,
+				421EF6E924E11CE10088C2AF /* ActivityBlurViewModifier.swift in Sources */,
+				421EF6E824E11CDE0088C2AF /* IdentifiableAlert.swift in Sources */,
+				421EF6F124E11D2B0088C2AF /* Tag.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42DD390924DAC86F00DDCA36 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,13 +400,13 @@
 				42DD394224DB627700DDCA36 /* PostViewModel.swift in Sources */,
 				424E48FE24DD057F00DFE083 /* TagsDemoApp.swift in Sources */,
 				424E48E324DCB90D00DFE083 /* IdentifiableAlert.swift in Sources */,
+				421EF6FD24E11E390088C2AF /* HomeView.swift in Sources */,
 				42DD393E24DB5D1500DDCA36 /* FeedView.swift in Sources */,
 				42DD392E24DACBC200DDCA36 /* Color+Random.swift in Sources */,
 				42DD393924DAD8A900DDCA36 /* PostsManager.swift in Sources */,
-				42DD392024DAC88D00DDCA36 /* NewPostView.swift in Sources */,
-				42DD391324DAC86F00DDCA36 /* HomeView.swift in Sources */,
 				42DD393424DAD01500DDCA36 /* UIColor+.swift in Sources */,
 				42DD393C24DAD9BC00DDCA36 /* NewPostViewModel.swift in Sources */,
+				421EF6F824E11DA90088C2AF /* NewPostView.swift in Sources */,
 				42DD392724DAC9B000DDCA36 /* Tag.swift in Sources */,
 				42DD392524DAC8C500DDCA36 /* Post.swift in Sources */,
 				42DD394B24DB785F00DDCA36 /* ActivityBlurViewModifier.swift in Sources */,
@@ -289,7 +417,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		421EF6DF24E11CC00088C2AF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				421EF6E024E11CC00088C2AF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		421EF6E324E11CC00088C2AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TagsDemo-iOS13/Preview Content\"";
+				DEVELOPMENT_TEAM = G2E74W75L6;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TagsDemo-iOS13/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.faultlinerapps.TagsDemo-iOS13";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		421EF6E424E11CC00088C2AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TagsDemo-iOS13/Preview Content\"";
+				DEVELOPMENT_TEAM = G2E74W75L6;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TagsDemo-iOS13/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.faultlinerapps.TagsDemo-iOS13";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		42DD391A24DAC87000DDCA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -453,6 +636,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		421EF6E524E11CC00088C2AF /* Build configuration list for PBXNativeTarget "TagsDemo-iOS13" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				421EF6E324E11CC00088C2AF /* Debug */,
+				421EF6E424E11CC00088C2AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		42DD390824DAC86F00DDCA36 /* Build configuration list for PBXProject "TagsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

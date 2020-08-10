@@ -9,12 +9,15 @@ import SwiftUI
 
 struct Tag: View, Identifiable {
 	
-	let id = UUID()
+	var id = UUID()
 	let tagName: String
 	private(set) var uiColor: UIColor
 	private(set) var showRemovalSymbol: Bool = false
 	
-	init(tagName: String, color: UIColor = .random()) {
+	init(id: UUID? = nil, tagName: String, color: UIColor = .random()) {
+		if id != nil {
+			self.id = id!
+		}
 		self.tagName = tagName
 		self.uiColor = color
 	}
@@ -131,7 +134,7 @@ extension Tag: Equatable, Hashable {
 
 extension Tag: Codable {
 	enum CodingKeys: String, CodingKey {
-		case id, color
+		case id, tagName, color
 	}
 	func encode(to encoder: Encoder) throws {
 		let (red, blue, green, alpha) = uiColor.rgba
@@ -140,6 +143,7 @@ extension Tag: Codable {
 		var container = encoder.container(keyedBy: Tag.CodingKeys.self)
 		do {
 			try container.encode(id, forKey: .id)
+			try container.encode(tagName, forKey: .tagName)
 			try container.encode(stringColor, forKey: .color)
 		}
 	}
@@ -147,7 +151,8 @@ extension Tag: Codable {
 		do {
 			let container = try decoder.container(keyedBy: Tag.CodingKeys.self)
 			
-			let id = try container.decode(String.self, forKey: .id)
+			let id = try container.decode(UUID.self, forKey: .id)
+			let tagName = try container.decode(String.self, forKey: .tagName)
 			
 			let componentsArray = try container.decode(String.self, forKey: .color).split(separator: ",").map({String($0)})
 			
@@ -159,7 +164,7 @@ extension Tag: Codable {
 				let blue	= 	formatter.number(from: componentsArray[2]),
 				let alpha 	= 	formatter.number(from: componentsArray[3])
 			else {
-				self.init(tagName: id)
+				self.init(id: id, tagName: tagName)
 				return
 			}
 			
@@ -168,7 +173,7 @@ extension Tag: Codable {
 								blue: CGFloat(blue.floatValue),
 								alpha: CGFloat(alpha.floatValue))
 			
-			self.init(tagName: id, color: color)
+			self.init(id: id, tagName: tagName, color: color)
 			
 		}
 	}
